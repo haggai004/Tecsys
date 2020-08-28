@@ -1,0 +1,45 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand a-logo"><img class="img-logo" src="../../assets/logo.jpg" /></a>
+
+      <div class="input-group div-search" style="background-color:red">
+        <input type="text" class="form-control input-search-text" placeholder="Search for..." name="SearchTextBox" id="SearchTextBox" [value]="searchInputText" (input)="searchInputText=$event.target.value"
+               required minlength="2" [(ngModel)]="searchInputText" #SearchTextBox="ngModel">
+        <div *ngIf="SearchTextBox.invalid && (SearchTextBox.dirty || SearchTextBox.touched)" class="alert alert-danger">
+
+          <div *ngIf="SearchTextBox.errors.required">
+            search text is required.
+          </div>
+          <div *ngIf="SearchTextBox.errors.minlength">
+            search text must be at least 2 characters long.
+          </div>
+        </div>
+
+        <span class="input-group-btn">
+          <button class="btn btn-default btn-search" (click)="Search(SearchTextBox.value)">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+           [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow ul-menu" >
+
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark a-fetch-cars" [routerLink]="['/cars']">Fetch Cars</a>
+          </li>
+
+          <li class="nav-item" >
+            <button class="btn-cart">
+            <i class="fa i-cart" >&#xf07a;</i>
+            <span class="circle-with-number">
+              {{cartItemsCount}}
+            </span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3ECBC1DD-1CF9-43DA-B111-4C3FAEB7B406}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tecsys.Retail.IocContainer</RootNamespace>
+    <AssemblyName>Tecsys.Retail.IocContainer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=5.11.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.6\lib\net48\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.8.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.8\lib\net48\Unity.Container.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UnityConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tecsys.Retail.Biz\Tecsys.Retail.Biz.csproj">
+      <Project>{8a292795-884a-4c1d-a4a3-b5fe7f416d35}</Project>
+      <Name>Tecsys.Retail.Biz</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tecsys.Retail.Domain\Tecsys.Retail.Domain.csproj">
+      <Project>{983eb76a-2867-4dfd-a833-b211b32a1e5d}</Project>
+      <Name>Tecsys.Retail.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tecsys.Retail.Interfaces\Tecsys.Retail.Interface.csproj">
+      <Project>{bfb6c761-1394-47a9-96f0-cddfa2087980}</Project>
+      <Name>Tecsys.Retail.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tecsys.Retail.Model\Tecsys.Retail.Model.csproj">
+      <Project>{163087bf-aff5-49ac-a434-e8024da4123d}</Project>
+      <Name>Tecsys.Retail.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tecsys.Retail.Repository\Tecsys.Retail.Repository.csproj">
+      <Project>{d2470976-4bcf-4a39-a0ff-e349a7f57f24}</Project>
+      <Name>Tecsys.Retail.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tecsys.Retail.RestApiClient\Tecsys.Retail.RestApiClient.csproj">
+      <Project>{845f3662-8414-4434-a013-7a3d49f88816}</Project>
+      <Name>Tecsys.Retail.RestApiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tecsys.Retail.TypeMapping\Tecsys.Retail.TypeMapping.csproj">
+      <Project>{1fc2ddae-8567-4002-a1a2-f885ba8b0be6}</Project>
+      <Name>Tecsys.Retail.TypeMapping</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,116 @@
+﻿body {
+}
+
+
+.modal-form {
+    max-width: inherit;
+    display: flex;
+}
+
+.horizontal {
+    display: inline-block;
+}
+
+.modal-quantity {
+    width: 55px !important;
+    max-width: 55px;
+    display: inline-block
+}
+
+.success {
+    color: blue;
+}
+
+.failure {
+    color: red;
+}
+
+.show {
+    display: inline;
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
+    display: none;
+}
+
+.div-cart-outer {
+max-width: 1000px;
+}
+
+.div-modal-body {
+    max-width: inherit;
+}
+
+.div-container, div-row {
+    max-width: inherit;
+}
+
+div-id {
+    visibility: collapse;
+    text-wrap: avoid
+}
+
+.div-img {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.div-descr-outer {
+    min-width: 460px;
+    max-width: 460px;
+}
+
+.div-descr-inner {
+    width: inherit;
+    min-width: inherit;
+    max-width: inherit;
+    word-wrap: break-word;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.div-unitprice-outer {
+    min-width: 150px;
+    max-width: 150px;
+    height: inherit;
+    padding: 10px;
+    margin-left: 10px;
+    border: solid;
+    border-color: gainsboro;
+    border-width: 1px
+}
+
+.div-unitprice-inner {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+}
+
+.div-quantity {
+    margin-top: 70px;
+    display: inline-block;
+}
+
+.span-unitprice {
+    min-width: 55px;
+    max-width: 55px;
+    display: inline-block;
+}
+
+.div-submit {
+    max-width: inherit;
+    text-align: left;
+    padding-left: 30px;
+}
+
+#statusText {
+    font-size: 14px;
+}
+
+.span-btns {
+    display: inline-block;
+    width: auto;
+    float: right;
+}

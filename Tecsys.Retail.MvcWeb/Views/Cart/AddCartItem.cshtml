@@ -1,0 +1,128 @@
+﻿@model Tecsys.Retail.Model.CartItemModel
+
+    <link href="~/Styles/AddCartItem.css" rel="stylesheet" />
+
+<div class="div-cart-outer">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="projectModal-label">ITEM DETAILS</h4>
+    </div>
+    <div class="modal-body div-modal-body">
+
+        @using (Html.BeginForm("AddCartItem", "Cart", FormMethod.Post, new { @class = "modal-form" }))
+        {
+            <div class="container div-container">
+                <div class="row div-row">
+
+                    <div id="div-id">
+                        @Html.HiddenFor(model => model.ProductId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.HiddenFor(model => model.CartId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.HiddenFor(model => model.ItemId, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="form-group col-md-4 div-img">
+                        <img src="@Url.Content("~/assets/" + @Model.ProductModel.ImagePath)" alt="Image" />
+                    </div>
+
+                    <div class="form-group col-md-4 container div-descr-outer">
+                        <div class="div-descr-inner">
+                            @Html.DisplayFor(model => model.ProductModel.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 form-group div-unitprice-outer">
+                        <div class="form-group div-unitprice-inner">
+                            @Html.LabelFor(model => model.ProductModel.UnitPrice, htmlAttributes: new { @class = "control-label horizontal" })
+                            <span class="span-unitprice">
+                                @Html.DisplayFor(model => model.ProductModel.UnitPrice, new { htmlAttributes = new { @class = "form-control currSign" } })
+                            </span>
+                        </div>
+
+                        <div class="form-group div-quantity">
+                            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label horizontal" })
+                            <span class="form-group span-quantity">
+                                @Html.EditorFor(model => model.Quantity, new { type = "number", min = "0", step = "1", htmlAttributes = new { @class = "form-control modal-quantity"} })
+                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer row div-submit">
+                    <span>
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        <span id="span-status"><text id="statusText"></text></span>
+                    </span>
+                    <span class="span-btns">
+                        <a href="#" class="btn" data-dismiss="modal">Close</a>
+                        <button type="submit" class="btn btn-success" id="btnAddtoCart" disabled="@(Model.Quantity == 0)">Add to Cart</button>
+                    </span>
+                </div>
+            </div>
+        }
+ 
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+<script>
+    $(document).ready(function () {
+
+        //Disable Submit Button On Modal Load
+        $('#btnAddtoCart').prop('disabled', true);
+
+        $('#Quantity').change(function () {
+
+            var quantity = $(this).val();
+            var intval = parseInt(quantity);
+
+            if (intval < 1) {
+                $('#btnAddtoCart').prop("disabled", true);
+            }
+            else {
+                $('#btnAddtoCart').prop("disabled", false);
+            }
+        });
+
+
+        $("#btnAddtoCart").click(function (e) {
+
+            e.preventDefault();
+            addedItemsCount = $('.modal-quantity').val();
+            //Serialize the form datas.
+            var valdata = $(".modal-form").serialize();
+            $('#statusText').removeClass('failure').removeClass('hide').addClass('hide');
+            $.ajax({
+                url: "/Cart/AddCartItem",
+                type: "POST",
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: valdata,
+                success: function () {
+                    alert("success");
+                    alert(addedItemsCount);
+                    updateCartItemsCount(addedItemsCount);
+                    var txt;
+                    if (addedItemsCount > 1)
+                        txt = `${addedItemsCount} items were added to your cart successfully!`;
+                    else
+                        txt = `${addedItemsCount} item was added to your cart successfully!`;
+
+                    $('#statusText').text(txt).removeClass('hide').removeClass('failure');
+                },
+                error: function (err) {
+                    var error;
+                    if (addedItemsCount > 1)
+                        error = 'We are unable to add your items to your cart at this time. Please try again later';
+                    else
+                        error = 'We are unable to add your item to your cart at this time. Please try again later';
+
+                    $('#statusText').text(error).removeClass('hide').addClass('failure');
+                }
+            });
+        });
+    });
+</script>
+</div>
+

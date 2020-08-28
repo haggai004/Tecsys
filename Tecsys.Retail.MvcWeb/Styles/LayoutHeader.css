@@ -1,0 +1,184 @@
+﻿body {
+}
+
+.tooltip-inner {
+    background-color: deepskyblue;
+    color: #fff;
+    font-size: 20px;
+    width: 60px;
+    height: 30px;
+    padding-top: 2px;
+}
+
+.tooltip.top .tooltip-arrow {
+    border-top-color: deepskyblue;
+}
+
+.tooltip.right .tooltip-arrow {
+    border-right-color: deepskyblue;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: deepskyblue;
+}
+
+.tooltip.left .tooltip-arrow {
+    border-left-color: deepskyblue;
+}
+
+.header {
+    height: 60px;
+    min-height: 60px;
+    max-height: 60px;
+    margin: 0;
+    padding: 0
+}
+
+.layout-nav {
+    width: 100%;
+    height: inherit;
+    min-height: inherit;
+    max-height: inherit;
+    text-wrap: none;
+    margin: 0;
+    padding: 0
+}
+
+.layout-container {
+    text-wrap: none;
+    height: inherit;
+    min-height: inherit;
+    max-height: inherit;
+    text-wrap: none;
+    white-space: nowrap;
+    display: inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 30px;
+}
+
+.span-logo {
+    display: inline-block;
+    vertical-align: top;
+    height: Auto;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.a-logo {
+    vertical-align: top;
+    margin: 0;
+    padding: 0
+}
+
+.img-logo {
+    height: 35px;
+    max-height: 35px;
+    min-height: 35px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    padding-left: 0px;
+    vertical-align: top;
+}
+
+.span-search {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    margin: 0;
+    height: 35px;
+    min-height: 35px;
+    max-height: 35px;
+}
+
+.search-textbox {
+    margin-left: 50px;
+    margin-top: 10px;
+    min-width: 600px;
+    max-width: 600px;
+    height: inherit;
+    min-height: inherit;
+    max-height: inherit;
+    display: inline-block
+}
+
+.fetch-cars-a {
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 100px;
+    margin-right: 10px;
+    vertical-align: bottom;
+    margin-bottom: 15px;
+}
+
+.btn-search {
+    background-color: lightskyblue;
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    height: 100%;
+}
+
+    .btn-search:hover {
+        background-color: skyblue;
+    }
+
+    .btn-search:disabled,
+    button[disabled] {
+        border: 1px solid #999999;
+        background-color: white;
+        color: #666666;
+    }
+
+.span-cart {
+    display: inline-block;
+    vertical-align: top;
+    height: Auto
+}
+
+
+.btn-cart {
+    border: none;
+    background: none;
+    height: 60px;
+    margin-top: 10px;
+}
+
+.span-count {
+    font-size: 14px;
+    min-height: 15px;
+    max-height: 15px;
+    min-width: 15px;
+    max-width: 15px;
+    border-radius: 50%;
+    color: white
+}
+
+.span-circle-with-number {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    display: inline-block;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    margin-left: -4px;
+    padding: 1px;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+.i-cart {
+    font-size: 65px;
+    height: 40px;
+    margin-top: 5px;
+    display: inline;
+}
+
+.span-getcars {
+    vertical-align: bottom;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}

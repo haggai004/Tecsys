@@ -1,0 +1,64 @@
+body {
+}
+
+th,td {
+  width: 100%;
+  white-space: nowrap;
+}
+
+table {
+  table-layout: auto !important;
+}
+
+th, td {
+  width: auto !important;
+}
+
+div {
+  width: 100%
+}
+
+.td-center {
+  position: relative;
+  width: auto;
+}
+
+.td-image {
+  width: auto;
+  text-align: center;
+  align-content: center;
+  height: 50px;
+  margin: 0;
+  padding: 5px;
+}
+
+.span-top {
+  vertical-align: top;
+}
+
+.car-image {
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.car-figure {
+  height: auto;
+  padding: 0;
+  margin: 0px;
+  vertical-align: top
+}
+
+.hidden {
+  display: none
+}
+
+.td-center {
+  width: auto;
+}
+
+.th-center {
+  text-align: center;
+}
+
+

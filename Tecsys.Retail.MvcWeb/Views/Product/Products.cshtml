@@ -1,0 +1,154 @@
+﻿
+@{
+
+}
+
+@using Tecsys.Retail.MvcWeb.Models;
+@{
+    var layoutModel = ViewBag.LayoutModel as LayoutModel;
+}
+
+
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Styles/_Layout.css" rel="stylesheet" />
+<link href="~/Styles/products.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    var cartId = '04f29047-f2b6-58d0-6d3e-fa30467d0548';
+
+</script>
+
+
+<div class="container div-outer">
+
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+
+            <div id="divLoading" name="divLoading" class="div-loading">
+                <i class="fa fa-cog fa-spin i-loading"></i>
+                <span> &nbsp; &nbsp;Loading...</span>
+            </div>
+
+            @if ((ViewBag.Action == "Products") && (ViewBag.ProductCount == 0))
+            {
+                <p class="p-search-msg">No products found for the search text: @ViewBag.SearchText</p>
+            }
+
+            <div name="divContents" id="divContents">
+
+
+                @if (ViewBag.Action == "GetCars")
+                {
+                    <h2>CARS</h2>
+                }
+                else
+                {
+                    <h2>PRODUCTS</h2>
+                }
+
+                <table class='table table-striped'>
+                    <thead>
+                        <tr>
+                            <th class="th-id">Product Id</th>
+                            @if (ViewBag.Action == "GetCars")
+                            {
+                                <th>Car Name</th>
+                            }
+                            else
+                            {
+                                <th>Product Name</th>
+                            }
+                            <th>Unit Price</th>
+                            <th class="th-center">Image</th>
+                            <th class="th-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var productModel in Model)
+                        {
+                            <tr>
+                                <td class="td-id">@productModel.ProductId</td>
+                                <td class="td-center">@productModel.ProductName</td>
+                                <td class="td-center">@productModel.UnitPrice</td>
+                                <td class="td-image td-center">
+                                    <figure class="car-figure">
+                                        <img class="car-image" src="~/assets/@productModel.ImagePath" />
+                                    </figure>
+                                </td>
+
+                                <td class="td-center">
+                                    <span>
+                                        <a href="javascript:void(0);" data-toggle="model" data-target="#cartItemModal" class="cartitem-modal-anchor" data-url="@Url.Action("NewCartItemGet","Cart",new { productId = productModel.ProductId })">
+                                            Add to Cart
+                                        </a>
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @* The following hosts the modal popup *@
+    <div id="cartItemModal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+
+    @section scripts
+{
+
+        <script>
+        $(function () {
+            $(".cartitem-modal-anchor").click(function (e) {
+                e.preventDefault();
+                var $button = $(this);
+                var partialViewUrl = $button.attr('data-url') + '&cartId=' + cartId;
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: partialViewUrl,
+                    contentType: "application/json; charset=utf-8",
+                    datatype: "json",
+                    success: function (data) {
+                        $('.modal-content').html(data);
+                        $('#cartItemModal').modal(options);
+                        $('#cartItemModal').modal('show');
+                    },
+                    error: function () {
+                        alert('Error: Failed to load add cart item popup modal');
+                    }
+                });
+            });
+        });
+
+          $('#divLoading').css("visibility", "collapse");
+
+
+          var model = "@Model";
+          var count = "@Model.Count";
+          var action = "@ViewBag.Action";
+
+
+          $('#divLoading').css("visibility", "collapse");
+
+            if (model != null && count > 0) {
+                $('#divLoading').css("visibility", "collapse");
+                $('#divContents').css("visibility", "visible");
+
+            }
+            else if (model == null || count==0 ) {
+                $('#divContents').css("visibility", "collapse");
+          }
+
+        </script>
+    }
+</div>

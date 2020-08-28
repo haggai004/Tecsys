@@ -1,0 +1,42 @@
+
+<div class="container">
+    <div class="row">
+      <!--<div class="col"></div>-->
+      <div class="col">
+        <div *ngIf="!productModels && (searchText.length >= 2)" class="div-loading">
+          <span class="spinner-border spinner-border-sm span-loading-spinner"></span>
+          <span> &nbsp; &nbsp;Loading...</span>
+        </div>
+          <h1 [hidden]="!productModels || (searchText.length < 2)">PRODUCTS (AngularWeb)</h1>
+          <table class='table table-striped' *ngIf="productModels" [hidden]="!productModels">
+            <thead>
+              <tr>
+                <th [hidden]="true">Product Id</th>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th class="th-center">Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let productModel of productModels">
+                <td [hidden]="true">{{ productModel.ProductId }}</td>
+                <td class="td-center">{{ productModel.ProductName }}</td>
+                <td class="td-center">{{ productModel.UnitPrice }}</td>
+                <td class="td-image">
+                  <figure class="car-figure" >
+                    <img class="car-image" src="../../assets/{{productModel.ImagePath}}" />
+                    <!--<figcaption>{{ productModel.ImagePath }}</figcaption>-->
+                  </figure>
+                  </td>
+                <td>
+                  <button (click)="onAddToCartClick(productModel.ProductId)" class="btn-cart">
+                  <i class="fa i-cart">&#xf07a;</i>
+                  <span class="circle-with-number">+</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+</div>

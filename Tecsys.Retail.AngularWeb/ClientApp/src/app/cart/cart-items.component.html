@@ -1,0 +1,43 @@
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <div *ngIf="!productModels" style="min-width:130px;">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="color:lightblue"></span>
+          <span> &nbsp; &nbsp;Loading...</span>
+        </div>
+          <h1 [hidden]="!productModels">PRODUCTS</h1>
+          <table class='table table-striped' *ngIf="productModels" [hidden]="!productModels">
+            <thead>
+              <tr>
+                <th [hidden]="true">Product Id</th>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th class="th-center">Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let productModel of productModels">
+                <td [hidden]="true">{{ productModel.ProductId }}</td>
+                <td class="td-center">{{ productModel.ProductName }}</td>
+                <td class="td-center">{{ productModel.UnitPrice }}</td>
+                <!--<td class="td-image"><div><img class="car-image" src="../../assets/{{productModel.ImagePath}}" /></div><div class="span-top">{{ productModel.ImagePath }}</div>  </td>-->
+                <td class="td-image">
+                  <figure class="car-figure" >
+                    <img class="car-image" src="../../assets/{{productModel.ImagePath}}" />
+                    <figcaption style="margin-bottom:0">{{ productModel.ImagePath }}</figcaption>
+                  </figure>
+                  </td>
+                <td>
+                  <button style="border:none; background:none"><i class="fa" style="font-size:24px;">&#xf07a;</i> <span style="width:15px; height:15px; border-radius:50%; border:1px none;font-size:10px; vertical-align:top; background-color:deepskyblue; color:white; padding:1px">+</span></button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+</div>

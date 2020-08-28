@@ -1,0 +1,154 @@
+body {
+}
+
+.div-outer {
+    max-width: 800px;
+}
+
+th,td {
+  width: 100%;
+  white-space: nowrap;
+}
+
+table {
+  table-layout: auto !important;
+}
+
+thead {
+    background-color: lightsteelblue;
+    color:white;
+}
+
+th, td {
+  width: auto !important;
+  text-align:center;
+}
+/*
+tr:nth-child(n+2) {
+    background-color: blue;
+}*/
+
+div {
+  width: 100%;
+}
+
+.td-center {
+    position: relative;
+    width: auto;
+    text-align: center;
+}
+
+.td-image {
+  width: auto;
+  text-align: center;
+  align-content: center;
+  height: 50px;
+  margin: 0;
+  padding: 5px;
+}
+
+.span-top {
+  vertical-align: top;
+}
+
+.car-image {
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.car-figure {
+  height: auto;
+  padding: 0;
+  margin: 0px;
+  vertical-align: top;
+}
+
+.hidden {
+  display: none;
+}
+
+.td-center {
+  width: auto;
+}
+
+.th-center {
+  text-align: center;
+}
+
+
+.i-cart {
+    font-size: 30px;
+}
+
+.circle-with-number {
+    width: 14px;
+    line-height: 14px;
+    border-radius: 50%;
+    border: none;
+    display: inline-block;
+    vertical-align: top;
+    background-color: red;
+    color: white;
+    padding: 1px;
+    font-size: 14px;
+}
+
+.center-self-align{
+    align-self:center;
+}
+
+#container .modal-body {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+}
+
+.currSign:before {
+    content: '$';
+}
+
+table {
+    border-collapse: collapse;
+}
+
+#addItemToCartModalbtn:hover {
+    background-color: lightskyblue;
+}
+
+#addItemToCartModalbtn:visited {
+    border-color: lightskyblue;
+}
+
+#addItemToCartModalbtn:focus {
+    outline-color: deepskyblue;
+}
+
+.i-loading {
+    font-size: 35px;
+}
+
+.div-loading {
+    min-width: 130px;
+    margin-top:0px;
+}
+
+.p-search-msg {
+    display: block;
+    margin-top: 0px;
+}
+
+th.th-id {
+    visibility: collapse;
+    display: none;
+}
+
+td.td-id {
+    visibility: collapse;
+    display: none;
+}
+
+.div-contents {
+    margin-left: -100px;
+}
+

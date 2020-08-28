@@ -1,0 +1,169 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.div-search {
+  text-wrap: none;
+  width: 500px;
+}
+
+
+.ul-menu {
+    white-space: nowrap;
+}
+
+.input-search-text {
+  width:700px;
+}
+
+
+li {
+   width:auto;
+   display:inline-block;
+}
+
+.a-fetch-cars {
+  width: 40px;
+}
+
+.SearchTextBox{
+    width:100%;
+}
+
+.show {
+    visibility: visible;
+    display:normal;
+}
+
+.hide {
+    visibility: collapse;
+    display: none;
+}
+
+
+.tooltip-inner {
+    background-color: deepskyblue;
+    color: #fff;
+    font-size: 20px;
+    width: 60px;
+    height: 30px;
+    padding-top: 2px;
+}
+
+.tooltip.top .tooltip-arrow {
+    border-top-color: deepskyblue;
+}
+
+.tooltip.right .tooltip-arrow {
+    border-right-color: deepskyblue;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    border-bottom-color: deepskyblue;
+}
+
+.tooltip.left .tooltip-arrow {
+    border-left-color: deepskyblue;
+}
+
+.span-logo {
+    display: inline-block;
+    vertical-align: top;
+    height: Auto;
+    margin-left: 20px;
+}
+
+.a-logo {
+    vertical-align: top;
+    margin: 0;
+    padding: 0
+}
+
+.img-logo {
+    height: 40px;
+    max-height: 40px;
+    min-height: 40px;
+    margin-left: 0px;
+    padding-left: 0px;
+    vertical-align: top;
+}
+
+.span-search {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 35px;
+}
+
+.search-textbox {
+    margin-left: 50px;
+    min-width: 600px;
+    max-width: 600px;
+    height: 100%;
+    display: inline-block
+}
+
+.fetch-cars-a {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+    margin-left: 100px;
+    margin-right: 10px;
+}
+
+.span-cart {
+    display: inline-block;
+    vertical-align: top;
+    height: Auto
+}
+
+
+.btn-cart {
+    border: none;
+    background: none;
+    height: auto;
+}
+
+.span-count {
+    font-size: 14px;
+    min-height: 15px;
+    max-height: 15px;
+    min-width: 15px;
+    max-width: 15px;
+    border-radius: 50%;
+    color: white
+}
+/*
+.span-circle-with-number {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    display: inline-block;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    margin-left: -4px;
+    padding: 1px;
+    text-align: center;
+    vertical-align: top;
+}*/
+

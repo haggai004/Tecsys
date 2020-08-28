@@ -1,0 +1,83 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.circle-with-number {
+  width: 8px;
+  line-height: 8px;
+  border-radius: 50%;
+  border: none;
+  display: inline-block;
+  vertical-align: top;
+  background-color: red;
+  color: white;
+  padding: 1px;
+  font-size: 8px;
+}
+
+.a-logo {
+  height: 40px;
+  text-align: left;
+  align-items: start;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.img-logo {
+  height: 40px;
+  align-content: start;
+  align-items: start;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.div-search {
+  text-wrap: none;
+  width: 700px
+}
+
+.btn-search {
+  background-color: deepskyblue;
+}
+
+.ul-menu {
+  white-space:nowrap;
+}
+
+.input-search-text {
+  width:100%;
+}
+
+.btn-cart {
+  border: none;
+  background: none;
+}
+
+.i-cart {
+  font-size:30px;
+}
+
+li {
+   width:auto;
+   display:inline-block;
+}
+
+.a-fetch-cars {
+  width: auto;
+}
+

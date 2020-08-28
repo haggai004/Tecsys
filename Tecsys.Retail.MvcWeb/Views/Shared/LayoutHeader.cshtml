@@ -1,0 +1,139 @@
+﻿@model Tecsys.Retail.MvcWeb.Models.LayoutModel
+
+<link href="~/Styles/LayoutHeader.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    function updateCartItemsCount(addedCount) {
+
+        if (addedCount == 0)
+            return;
+
+        var newTotal;
+        var oldTotal = $('#cartItemCountSpan').html() ?? 0;
+
+        if (oldTotal.trim().length > 0) {
+            newTotal = Number(oldTotal) + Number(addedCount);
+        }
+        else {
+            $('#cartItemCountSpan').html(addedCount);
+            newTotal = addedCount;
+        }
+
+        $('#cartItemCountSpan').html(newTotal);
+        $('#cartItemCountSpan').attr("data-original-title", newTotal);
+        $('#cartItemCountSpan').css("visibility", "visible");
+
+        sessionStorage.setItem('cartItemCount', newTotal);
+    }
+
+    $(function () {
+        $('#SearchText').keyup(function () {
+            var txt = ($(this).val());
+            if (txt.length < 2 || txt.length > 50)
+                $('#SearchBtn').prop('disabled', true)
+            else
+                $('#SearchBtn').prop('disabled', false);
+        });
+    });
+
+
+    $(document).ready(function () {
+        //hide tooltip count display
+        $('#cartItemCountSpan').css("visibility", "collapse");
+        //add tool tip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        var cartItemCount = sessionStorage.getItem('cartItemCount');
+        if (cartItemCount !== null) {
+            var count = parseInt(cartItemCount, 10);
+            if (count > 0) {
+                $('#cartItemCountSpan').html(count);
+                $('#cartItemCountSpan').attr("data-original-title", count);
+                $('#cartItemCountSpan').css("visibility", "visible");
+            }
+            else {
+                $('#cartItemCountSpan').css("visibility", "collapse");
+            }
+        }
+
+        //Disable Search Button On Page Load
+        $('#SearchBtn').prop('disabled', true);
+
+        $("#SearchBtn").click(function (evt) {
+
+            $('.search-msg').css("visibility", "collapse");
+            var searchText = $("#SearchText").val();
+            if (searchText.length == 0) {
+                //disable SearchBtn
+                $('#SearchBtn').prop('disabled', true);
+                return;
+            }
+
+            $('#divLoading').css("visibility", "visible");
+            $('#divContents').css("visibility", "collapse");
+
+            window.location.href = '/Product/Products?searchText=' + searchText;
+        })
+
+
+        $(".fetch-cars-a").click(function (e) {
+
+            var $button = $(this);
+            var viewUrl = $button.attr('data-url');
+
+            $('#divLoading').css("visibility", "visible");
+            $('#divContents').css("visibility", "collapse");
+            $('.search-msg').css("visibility", "collapse");
+
+            window.location.href = viewUrl;
+        });
+    });
+
+</script>
+
+<header class="header">
+    <nav class="layout-nav navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container layout-container">
+
+            <span class="span-logo">
+                <a class="a-logo navbar-brand">
+                    <img class="img-logo" src="~/assets/logo.jpg" />
+                </a>
+            </span>
+
+            <span class="span-search">
+                @Html.EditorFor(model => model.SearchText, new
+                {
+                    type = "text",
+                    htmlAttributes = new
+                    {
+                        @class = "text-box single-line search-textbox",
+                        @placeholder = "Search for..."
+                    }
+                })
+
+                <button name="SearchBtn" id="SearchBtn" class="btn btn-default btn-search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+
+            <span class="span-getcars">
+                <a href="javascript:void(0);" class="fetch-cars-a" data-url="@Url.Action("GetCars", "Product")">
+                    Fetch Cars
+                </a>
+            </span>
+
+            <span>
+                <button class="btn-cart">
+                    <i class="fa i-cart">&#xf07a;</i>
+                    <span id="cartItemCountSpan" class="span-circle-with-number"
+                          data-toggle="tooltip" data-placement="right" title="" data-original-title="">
+                    </span>
+                </button>
+            </span>
+
+        </div>
+    </nav>
+
+</header>

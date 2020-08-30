@@ -28,8 +28,8 @@ namespace Tecsys.Retail.MvcWeb.Controllers
             try
             {
                 //Thread.Sleep(5000);
-                var cars = await _apiClient.GetCars();
-                ViewBag.Action = "GetCars";
+                var cars = await _apiClient.GetCarsAsync();
+                ViewBag.Action = "GetCarsAsync";
                 return View("Products", cars);
 
             }
@@ -49,7 +49,7 @@ namespace Tecsys.Retail.MvcWeb.Controllers
             {
                 Thread.Sleep(5000);
 
-                IEnumerable<IProductModel> products = await _apiClient.GetProducts(searchText);
+                IEnumerable<IProductModel> products = await _apiClient.GetProductsAsync(searchText);
                 ViewBag.Action = "Products";
                 ViewBag.SearchText = searchText;
                 ViewBag.ProductCount = products.Count();

@@ -24,13 +24,13 @@ namespace Tecsys.Retail.MvcWeb.Controllers
             _typeMapper = typeMapper;
         }
 
-        // GET: Cart/NewCartItemGet
+        // GET: Cart/NewCartItemGetAsync
         [HttpGet]
-        public async Task<PartialViewResult> NewCartItemGet(string cartId,int productId)
+        public async Task<PartialViewResult> NewCartItemGetAsync(string cartId,int productId)
         {
             try
             {
-                var cartItem = await _cartApiClient.CreateCartItem(cartId,productId);
+                var cartItem = await _cartApiClient.CreateCartItemAsync(cartId,productId);
                 CartItemModel cartItemModel = _typeMapper.Map<ICartItemModel, CartItemModel>(cartItem);
 
                 return PartialView("AddCartItem", cartItemModel);
@@ -44,7 +44,7 @@ namespace Tecsys.Retail.MvcWeb.Controllers
 
         // POST: Cart/AddCartItemPost
         [HttpPost]
-        public async Task<ActionResult> AddCartItem(CartItemModel cartItemModel)
+        public async Task<ActionResult> AddCartItemAsync(CartItemModel cartItemModel)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace Tecsys.Retail.MvcWeb.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var response = await _cartApiClient.AddCartItem(cartItemModel);
+                    var response = await _cartApiClient.AddCartItemAsync(cartItemModel);
 
                     string json = "{\"HttpStatusCode\":\"OK\"}";
                     return Json(new { responseText = "OK" });

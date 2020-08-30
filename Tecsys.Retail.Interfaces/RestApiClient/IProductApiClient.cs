@@ -10,8 +10,8 @@ namespace Tecsys.Retail.RestApiClient
 {
     public interface IProductApiClient
     {
-        Task<IEnumerable<IProductModel>> GetCars();
+        Task<IEnumerable<IProductModel>> GetCarsAsync();
 
-        Task<IEnumerable<IProductModel>> GetProducts(string name);
+        Task<IEnumerable<IProductModel>> GetProductsAsync(string name);
     }
 }

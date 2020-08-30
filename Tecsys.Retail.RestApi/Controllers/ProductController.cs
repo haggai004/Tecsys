@@ -26,7 +26,7 @@ namespace Tecsys.Retail.RestApi.Controllers
         }
 
 
-        public async Task<JArray> GetCars()
+        public async Task<JArray> GetCarsAsync()
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Tecsys.Retail.RestApi.Controllers
 
         // GET api/product/searchText
         [Route("{searchText}")]
-        public async Task<IEnumerable<IProduct>> GetProducts(string searchText)
+        public async Task<IEnumerable<IProduct>> GetProductsAsync(string searchText)
         {
             try
             {

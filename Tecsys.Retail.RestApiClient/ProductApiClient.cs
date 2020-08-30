@@ -10,7 +10,7 @@ namespace Tecsys.Retail.RestApiClient
     public class ProductApiClient:ApiClient, IProductApiClient
     {
         const string Route = @"api/product/";
-        public async Task<IEnumerable<IProductModel>> GetCars()
+        public async Task<IEnumerable<IProductModel>> GetCarsAsync()
         {
             const string cacheKey = "GetCars";
             TsCache cache = new TsCache();
@@ -27,7 +27,7 @@ namespace Tecsys.Retail.RestApiClient
             return carModels;
         }
 
-        public async Task<IEnumerable<IProductModel>> GetProducts(string searchText)
+        public async Task<IEnumerable<IProductModel>> GetProductsAsync(string searchText)
         {
             string cacheKey = searchText;
             TsCache cache = new TsCache();

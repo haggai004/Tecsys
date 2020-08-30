@@ -11,8 +11,8 @@ namespace Tecsys.Retail.RestApiClient
 {
     public interface ICartApiClient
     {
-        Task<ICartItemModel> CreateCartItem(string cartId,int productId);
-        Task<HttpResponseMessage> AddCartItem(Model.ICartItemModel cartItemModel);
-        Task<ICartItemModel> GetCartItem(string itemId);
+        Task<ICartItemModel> CreateCartItemAsync(string cartId,int productId);
+        Task<HttpResponseMessage> AddCartItemAsync(Model.ICartItemModel cartItemModel);
+        Task<ICartItemModel> GetCartItemAsync(string itemId);
     }
 }

@@ -16,7 +16,7 @@ namespace Tecsys.Retail.MvcWeb
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Product", action = "GetCars", id = UrlParameter.Optional }
+                defaults: new { controller = "Product", action = "GetCarsAsync", id = UrlParameter.Optional }
             );
         }
     }

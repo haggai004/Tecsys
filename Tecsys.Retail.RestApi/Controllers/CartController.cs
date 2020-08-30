@@ -38,7 +38,7 @@ namespace Tecsys.Retail.RestApi.Controllers
             return cart;
         }
 
-        public async Task<HttpResponseMessage> AddCartItem(CartItem cartItem)
+        public async Task<HttpResponseMessage> AddCartItemAsync(CartItem cartItem)
         {
             try
             {
@@ -58,8 +58,8 @@ namespace Tecsys.Retail.RestApi.Controllers
         }
 
         [HttpGet]
-        [Route("{NewCartItemGet}")]
-        public async Task<ICartItem> NewCartItemGet(string cartId, int productId)
+        [Route("{NewCartItemGetAsync}")]
+        public async Task<ICartItem> NewCartItemGetAsync(string cartId, int productId)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Tecsys.Retail.RestApi.Controllers
             }
         }
 
-        public async Task<ICartItem> GetCartItem(string itemId)
+        public async Task<ICartItem> GetCartItemAsync(string itemId)
         {
             try
             {

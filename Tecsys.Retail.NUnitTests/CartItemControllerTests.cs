@@ -43,7 +43,7 @@ namespace Tecsys.Retail.NUnitTests
             cartItem.DateCreated = dateCreated;
             cartItem.ProductId = productId;
 
-            await _cartItemController.AddCartItem(cartItem);
+            await _cartItemController.AddCartItemAsync(cartItem);
 
             Domain.ICartItem newCartItem = await _cartItemService.GetCartItemAsync(itemId);
 

@@ -94,14 +94,12 @@
             var valdata = $(".modal-form").serialize();
             $('#statusText').removeClass('failure').removeClass('hide').addClass('hide');
             $.ajax({
-                url: "/Cart/AddCartItem",
+                url: "/Cart/AddCartItemAsync",
                 type: "POST",
                 dataType: 'json',
                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 data: valdata,
                 success: function () {
-                    alert("success");
-                    alert(addedItemsCount);
                     updateCartItemsCount(addedItemsCount);
                     var txt;
                     if (addedItemsCount > 1)

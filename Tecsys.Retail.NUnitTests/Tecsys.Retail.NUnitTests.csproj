@@ -53,6 +53,9 @@
     <Reference Include="HttpMock, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HttpMock.2.3.1\lib\net45\HttpMock.dll</HintPath>
     </Reference>
+    <Reference Include="HttpMockServer, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HttpMockServer.2.0.1\lib\netstandard2.0\HttpMockServer.dll</HintPath>
+    </Reference>
     <Reference Include="HttpServerMock, Version=0.0.94.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HttpServerMock.0.0.94\lib\netstandard2.0\HttpServerMock.dll</HintPath>
     </Reference>
@@ -170,6 +173,9 @@
     <Reference Include="Moq, Version=4.14.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.14.5\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Moq.AutoMock, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.AutoMock.2.0.1\lib\net45\Moq.AutoMock.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -252,8 +258,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartApiClientUnitTests.cs" />
     <Compile Include="CartItemControllerTests.cs" />
-    <Compile Include="CartApiClientTests.cs" />
+    <Compile Include="CartApiClientIntegrationTests.cs" />
     <Compile Include="ProductApiClientTests.cs" />
     <Compile Include="ProductControllerTests.cs" />
     <Compile Include="CartRepositoryTests.cs" />

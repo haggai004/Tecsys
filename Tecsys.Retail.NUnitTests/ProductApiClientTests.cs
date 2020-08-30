@@ -30,7 +30,7 @@ namespace Tecsys.Retail.NUnitTests
         public async Task GetCars()
         {
             //Arrange
-            IEnumerable<IProductModel> carModels = await _productApiClient.GetCars();
+            IEnumerable<IProductModel> carModels = await _productApiClient.GetCarsAsync();
 
             Assert.IsNotNull(carModels);
             Assert.AreEqual(carModels.Count(), 5);
@@ -43,28 +43,28 @@ namespace Tecsys.Retail.NUnitTests
             //Arrange
             string name = "Convertible";
             //Act
-            var productModels = await _productApiClient.GetProducts(name);
+            var productModels = await _productApiClient.GetProductsAsync(name);
             //Assert
             Assert.IsNotEmpty(productModels);
 
             //Arrange
             name = "Conv";
             //Act
-            productModels = await _productApiClient.GetProducts(name);
+            productModels = await _productApiClient.GetProductsAsync(name);
             //Assert
             Assert.IsNotEmpty(productModels);
 
             //Arrange
             name = "DoesNotExist";
             //Act
-            productModels = await _productApiClient.GetProducts(name);
+            productModels = await _productApiClient.GetProductsAsync(name);
             //Assert
             Assert.IsEmpty(productModels);
 
             //Arrange
             name = "neutrino";
             //Act
-            productModels = await _productApiClient.GetProducts(name);
+            productModels = await _productApiClient.GetProductsAsync(name);
             //Assert
             Assert.IsNotEmpty(productModels);
         }

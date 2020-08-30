@@ -30,7 +30,7 @@ namespace Tecsys.Retail.NUnitTests
         public async Task GetCars()
         {
             //Arrange
-            var jArray = await _productController.GetCars();
+            var jArray = await _productController.GetCarsAsync();
             var carModels = jArray.ToObject<IEnumerable<ProductModel>>();
 
             Assert.IsNotNull(carModels);
@@ -44,21 +44,21 @@ namespace Tecsys.Retail.NUnitTests
             //Arrange
             string name = "Convertible";
             //Act
-            var products = await _productController.GetProducts(name);
+            var products = await _productController.GetProductsAsync(name);
             //Assert
             Assert.IsNotEmpty(products);
 
             //Arrange
             name = "Conv";
             //Act
-            products = await _productController.GetProducts(name);
+            products = await _productController.GetProductsAsync(name);
             //Assert
             Assert.IsNotEmpty(products);
 
             //Arrange
             name = "DoesNotExist";
             //Act
-            products = await _productController.GetProducts(name);
+            products = await _productController.GetProductsAsync(name);
             //Assert
             Assert.IsEmpty(products);
         }

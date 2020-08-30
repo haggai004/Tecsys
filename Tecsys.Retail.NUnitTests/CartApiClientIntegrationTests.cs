@@ -13,7 +13,7 @@ using Tecsys.Retail.Model;
 namespace Tecsys.Retail.NUnitTests
 {
     [TestFixture]
-    public class CartApiClientTests
+    public class CartApiClientIntegrationTests
     {
         private IUnityContainer _container;
         private ICartApiClient _cartApiClient;
@@ -34,7 +34,7 @@ namespace Tecsys.Retail.NUnitTests
             int productId = rand.Next(1, 16);//valid productIds: 1-16
 
             //Act
-            ICartItemModel cartItem = await _cartApiClient.CreateCartItem(_cartId,productId);
+            ICartItemModel cartItem = await _cartApiClient.CreateCartItemAsync(_cartId,productId);
 
             //Assert
             Assert.IsNotNull(cartItem);
@@ -55,7 +55,7 @@ namespace Tecsys.Retail.NUnitTests
             int productId = rand.Next(1, 16);//valid productIds: 1-16
 
             //Act
-            ICartItemModel cartItem = await _cartApiClient.CreateCartItem(_cartId, productId);
+            ICartItemModel cartItem = await _cartApiClient.CreateCartItemAsync(_cartId, productId);
 
             //Assert
             Assert.IsNotNull(cartItem);
@@ -66,13 +66,13 @@ namespace Tecsys.Retail.NUnitTests
             Assert.AreEqual(productId, cartItem.ProductModel.ProductId);
 
             //Act
-            var response = await _cartApiClient.AddCartItem(cartItem);
+            var response = await _cartApiClient.AddCartItemAsync(cartItem);
 
             //Assert
             Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
 
             //Act
-            var cartItemActual = await _cartApiClient.GetCartItem(cartItem.ItemId);
+            var cartItemActual = await _cartApiClient.GetCartItemAsync(cartItem.ItemId);
 
             //Assert
             Assert.IsNotNull(cartItemActual);

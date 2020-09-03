@@ -28,6 +28,7 @@
     "font-awesome": "^4.7.0",
     "guid-typescript": "^1.0.9",
     "jquery": "3.4.1",
+    "ngx-spec": "^2.1.4",
     "oidc-client": "^1.9.1",
     "popper.js": "^1.16.0",
     "rxjs": "^6.5.3",

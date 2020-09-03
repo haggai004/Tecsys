@@ -7,6 +7,6 @@ namespace Tecsys.Retail.Repository
     {
         Task<List<Ef.Product>> GetCars();
         Task<List<Ef.Product>> GetProducts(string name);
-        Task<Ef.Product> GetProduct(int productId);
+        Task<Ef.Product> GetProductAsync(int productId);
     }
 }

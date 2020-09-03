@@ -10,7 +10,7 @@ import { IProductModel } from '../models/interfaces';
 
 export class ProductService {
 
-  private REST_API_SERVER = "https://localhost:44326/";
+  public REST_API_SERVER = "https://localhost:44326/";
 
   constructor(private httpClient: HttpClient) { }
 

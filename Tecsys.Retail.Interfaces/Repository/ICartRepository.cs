@@ -7,19 +7,11 @@ using System.Collections.Generic;
 
 namespace Tecsys.Retail.Repository
 {
-    public interface ICartRepository
+    public interface ICartRepository:IRepository
     {
-        Task<bool> AddCartItemAsync(CartItem cartItem);
-        Task<bool> UpdateCartItemAsync(CartItem cartItem);
+        Task<int> AddOrUpdateCartItemAsync(CartItem cartItem);
         Task<CartItem> GetCartItemAsync(string itemId);
-        Task<List<CartItem>> GetCartItemsAsync(string cartd);
-
-        ///// <summary>
-        ///// Not supported by DB Schema
-        ///// </summary>
-        ///// <param name="cartId"></param>
-        ///// <returns></returns>
-        //Task<ICart> GetCart(string cartId);
+        Task<List<CartItem>> GetCartItemsAsync(string cartId);
 
     }
 }

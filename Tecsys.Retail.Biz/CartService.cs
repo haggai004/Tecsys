@@ -24,10 +24,10 @@ namespace Tecsys.Retail.Biz
             _productBiz = productBiz;
         }
 
-        public async Task<bool> AddCartItemAsync(Domain.ICartItem cartItem)
+        public async Task<int> AddOrUpdateCartItemAsync(Domain.ICartItem cartItem)
         {
             Ef.CartItem cartItemEntity = _typeMapper.Map<Domain.ICartItem,  Ef.CartItem>(cartItem);
-            return await Task.Run(() => _cartRepository.AddCartItemAsync(cartItemEntity));
+            return await Task.Run(() => _cartRepository.AddOrUpdateCartItemAsync(cartItemEntity));
         }
 
         public async Task<ICartItem> GetCartItemAsync(string itemId)
@@ -62,10 +62,5 @@ namespace Tecsys.Retail.Biz
             return cart;
         }
 
-        public async Task<bool> UpdateCartItemAsync(ICartItem cartItem)
-        {
-            Ef.CartItem cartItemEntity = _typeMapper.Map<Domain.ICartItem, Ef.CartItem>(cartItem);
-            return await Task.Run(() => _cartRepository.AddCartItemAsync(cartItemEntity));
-        }
     }
 }

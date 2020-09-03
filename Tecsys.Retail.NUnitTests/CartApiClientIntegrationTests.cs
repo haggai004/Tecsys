@@ -46,7 +46,7 @@ namespace Tecsys.Retail.NUnitTests
         }
 
         [Test]
-        public async Task AddCartItem()
+        public async Task AddCartItemAsync()
         {
             //Integration Testing
 

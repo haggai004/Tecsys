@@ -7,10 +7,10 @@
           <span class="spinner-border spinner-border-sm span-loading-spinner"></span>
           <span> &nbsp; &nbsp;Loading...</span>
         </div>
-          <h1 [hidden]="!productModels">CARS (AngularWeb)</h1>
+          <h1 [hidden]="!productModels">{{Title}}</h1>
           <table class='table table-striped' *ngIf="productModels" [hidden]="!productModels">
             <thead>
-              <tr>
+              <tr class="header-row">
                 <th [hidden]="true">Car Id</th>
                 <th>Car Name</th>
                 <th>Unit Price</th>
@@ -18,7 +18,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let productModel of productModels">
+              <tr *ngFor="let productModel of productModels" class="body-row">
                 <td [hidden]="true">{{ productModel.ProductId }}</td>
                 <td class="td-center">{{ productModel.ProductName }}</td>
                 <td class="td-center">{{ productModel.UnitPrice }}</td>

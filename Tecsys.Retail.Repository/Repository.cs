@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Data.Entity;
 using Tecsys.Retail.Ef;
 
 namespace Tecsys.Retail.Repository
 {
-    public class Repository:IDisposable
+    public class Repository: IRepository, IDisposable
     {
         public Ef.WingtiptoysEntities DbContext { get; }
 

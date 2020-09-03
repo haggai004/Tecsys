@@ -18,6 +18,7 @@ import { CartItemsService } from '../services/cart.items.service';
 export class FetchCarsComponent implements OnInit, OnDestroy {
   public productModels: IProductModel[];
   private cartId: string;
+  public Title: string = 'CARS (AngularWeb)';
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 

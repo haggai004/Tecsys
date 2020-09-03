@@ -60,7 +60,7 @@ namespace Tecsys.Retail.Repository
             });
         }
 
-        public async Task<Ef.Product> GetProduct(int productId)
+        public async Task<Ef.Product> GetProductAsync(int productId)
         {
             return await Task.Run(() =>
             {

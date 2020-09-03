@@ -13,17 +13,16 @@ using Tecsys.Retail.Model;
 namespace Tecsys.Retail.NUnitTests
 {
     [TestFixture]
-    public class ProductApiClientTests
+    public class ProductApiClientRegressionTests
     {
         private IUnityContainer _container;
         private IProductApiClient _productApiClient;
 
-       [OneTimeSetUp]
+        [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
             _container = UnityConfig.Container;
             _productApiClient = _container.Resolve<IProductApiClient>();
-
         }
         
         [Test]

@@ -23,6 +23,7 @@ export class SearchProductsComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   private cartId: string;
   message: string;
+  public Title: string = 'CARS (AngularWeb)';
   public searchText: string;
 
   constructor(private productsService: ProductService, private dataService: DataService,

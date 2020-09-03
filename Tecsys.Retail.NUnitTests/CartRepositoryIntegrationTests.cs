@@ -11,7 +11,7 @@ using Tecsys.Retail.Repository;
 namespace Tecsys.Retail.NUnitTests
 {
     [TestFixture]
-    public class CartRepositoryTests
+    public class CartRepositoryIntegrationTests
     {
         private IUnityContainer _container;
         private string _cartId;
@@ -43,10 +43,10 @@ namespace Tecsys.Retail.NUnitTests
             };
 
             //Act
-            bool isSuccess = await _itemRepository.AddCartItemAsync(cartItem);
+            int count = await _itemRepository.AddOrUpdateCartItemAsync(cartItem);
 
             //Assert
-            Assert.IsTrue(isSuccess);
+            Assert.IsTrue(count==1);
 
             Ef.CartItem newCartItem = await _itemRepository.GetCartItemAsync(itemId);
 

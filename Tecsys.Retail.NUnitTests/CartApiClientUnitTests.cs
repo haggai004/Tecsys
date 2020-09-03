@@ -14,33 +14,44 @@ using Moq.AutoMock;
 using Moq.Protected;
 using System.Net.Http;
 using System.Threading;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using Tecsys.Retail.TypeMapping;
+//using Telerik.JustMock;
+//using Telerik.JustMock.AutoMock;
+
+
+
 
 namespace Tecsys.Retail.NUnitTests
 {
     [TestFixture]
-    public class CartApiClientTests
+    public class CartApiClientUnitTests
     {
         private IUnityContainer _container;
-        private ICartApiClient _cartApiClient;
         string _cartId = Guid.NewGuid().ToString();
 
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
             _container = UnityConfig.Container;
-            _cartApiClient = _container.Resolve<ICartApiClient>();
         }
 
+
         [Test]
-        public async Task CreateCartItem()
+        public async Task CreateCartItemAsync()
         {
             // ARRANGE
-            var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
-            handlerMock
+            string json = "{\"ItemId\":\"11111111111111111111111\",\"CartId\":\"2222222222222222222222\",\"Quantity\":0,\"DateCreated\":\"0001-01-01T00:00:00\",\"ProductId\":1,\"Product\":{\"Description\":\"This convertible car is fast! The engine is powered by a neutrino based battery (not included).Power it up and let it go!\",\"CategoryId\":1,\"ImagePath\":\"carconvert.png\",\"UnitPrice\":22.5,\"ProductName\":\"Convertible Car\",\"ProductId\":1}}";
+            Model.CartItemModel expectedCartItem = JsonConvert.DeserializeObject<Model.CartItemModel>(json);
+
+            Moq.Mock<CustomHttpHandler> httpHandlerMock = new Moq.Mock<CustomHttpHandler>(Moq.MockBehavior.Strict);
+            httpHandlerMock
                .Protected()
                // Setup the PROTECTED method to mock
                .Setup<Task<HttpResponseMessage>>(
-                  "GetStringAsync",
+                  //regardless of the method in the HttpClient class you use (GetAsync, PostAsync, etc.) - the SendAsync method is used by the HttpMessageHandler class.
+                  "SendAsync",
                   ItExpr.IsAny<HttpRequestMessage>(),
                   ItExpr.IsAny<CancellationToken>()
                )
@@ -48,75 +59,63 @@ namespace Tecsys.Retail.NUnitTests
                .ReturnsAsync(new HttpResponseMessage()
                {
                    StatusCode = HttpStatusCode.OK,
-                   Content = new StringContent("[{'id':1,'value':'1'}]"),
+                   Content = new StringContent(json),
                })
                .Verifiable();
 
-            // use real http client with mocked handler here
-            var httpClient = new HttpClient(handlerMock.Object)
-            {
-                BaseAddress = new Uri("http://test.com/"),
-            };
+            HttpClient httpClient = new HttpClient(httpHandlerMock.Object);
 
             Random rand = new Random(3);
             int productId = rand.Next(1, 16);//valid productIds: 1-16
+            ITypeMapper typeMapper = _container.Resolve<ITypeMapper>();
+            CartApiClient client = new CartApiClient(httpClient, typeMapper);
 
-            // ACT
+            //ACT
+            ICartItemModel actualCartItem = await client.CreateCartItemAsync(_cartId, productId);
 
-            ICartItemModel result = await _cartApiClient.CreateCartItemAsync(_cartId, productId);
-
-
-
-            // ASSERT
-            result.Should().NotBeNull(); // this is fluent assertions here...
-            result.Id.Should().Be(1);
-
-            // also check the 'http' call was like we expected it
-            var expectedUri = new Uri("http://test.com/api/test/whatever");
-
-            handlerMock.Protected().Verify(
-               "SendAsync",
-               Times.Exactly(1), // we expected a single external request
-               ItExpr.Is<HttpRequestMessage>(req =>
-                  req.Method == HttpMethod.Get  // we expected a GET request
-                  && req.RequestUri == expectedUri // to this uri
-               ),
-               ItExpr.IsAny<CancellationToken>()
-            );
+            //ASSERT
+            Assert.IsNotNull(actualCartItem);
+            Assert.AreEqual(expectedCartItem.ItemId, actualCartItem.ItemId);
+            Assert.AreEqual(expectedCartItem.ProductId, actualCartItem.ProductId);
+            Assert.AreEqual(expectedCartItem.Quantity, actualCartItem.Quantity);
+            Assert.AreEqual(expectedCartItem.DateCreated, actualCartItem.DateCreated);
+            Assert.AreEqual(expectedCartItem.DateCreated, actualCartItem.DateCreated);
         }
 
         [Test]
-        public async Task AddCartItem()
+        public async Task AddCartItemAsync()
         {
-            //Integration Testing
-
             //Arrange
-            Random rand = new Random(3);
-            int productId = rand.Next(1, 16);//valid productIds: 1-16
+
+            string json = "{\"ItemId\":\"11111111111111111111111\",\"CartId\":\"2222222222222222222222\",\"Quantity\":0,\"DateCreated\":\"0001-01-01T00:00:00\",\"ProductId\":1,\"Product\":{\"Description\":\"This convertible car is fast! The engine is powered by a neutrino based battery (not included).Power it up and let it go!\",\"CategoryId\":1,\"ImagePath\":\"carconvert.png\",\"UnitPrice\":22.5,\"ProductName\":\"Convertible Car\",\"ProductId\":1}}";
+            Model.CartItemModel cartItem = JsonConvert.DeserializeObject<Model.CartItemModel>(json);
+
+            Moq.Mock<CustomHttpHandler> httpHandlerMock = new Moq.Mock<CustomHttpHandler>(Moq.MockBehavior.Strict);
+            httpHandlerMock
+               .Protected()
+               // Setup the PROTECTED method to mock
+               .Setup<Task<HttpResponseMessage>>(
+                  //regardless of the method in the HttpClient class you use (GetAsync, PostAsync, etc.) - use the SendAsync method of the HttpMessageHandler class.
+                  "SendAsync",
+                  ItExpr.IsAny<HttpRequestMessage>(),
+                  ItExpr.IsAny<CancellationToken>()
+               )
+               // prepare the expected response of the mocked http call
+               .ReturnsAsync(new HttpResponseMessage()
+               {
+                   StatusCode = HttpStatusCode.OK
+               })
+               .Verifiable();
+
+            HttpClient httpClient = new HttpClient(httpHandlerMock.Object);
+            ITypeMapper typeMapper = _container.Resolve<ITypeMapper>();
+            CartApiClient client = new CartApiClient(httpClient, typeMapper);
 
             //Act
-            ICartItemModel cartItem = await _cartApiClient.CreateCartItemAsync(_cartId, productId);
-
-            //Assert
-            Assert.IsNotNull(cartItem);
-            Assert.IsNotNull(cartItem.ItemId);
-            Assert.IsNotEmpty(cartItem.ItemId);
-            Assert.IsNotNull(cartItem.ProductModel);
-            Assert.AreEqual(productId, cartItem.ProductId);
-            Assert.AreEqual(productId, cartItem.ProductModel.ProductId);
-
-            //Act
-            var response = await _cartApiClient.AddCartItemAsync(cartItem);
+            var response = await client.AddCartItemAsync(cartItem);
 
             //Assert
             Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
-
-            //Act
-            var cartItemActual = await _cartApiClient.GetCartItemAsync(cartItem.ItemId);
-
-            //Assert
-            Assert.IsNotNull(cartItemActual);
-            Assert.AreEqual(cartItem.ItemId, cartItemActual.ItemId);
 
         }
     }

@@ -23,7 +23,6 @@ namespace Tecsys.Retail.RestApi.Controllers
 
         public CartController()
         {
-
         }
 
         public CartController(ICartService cartBiz, ITypeMapper mapper)
@@ -32,12 +31,14 @@ namespace Tecsys.Retail.RestApi.Controllers
             _mapper = mapper;
         }
 
-        public async Task<ICart> GetCart(string cartId)
+        public async Task<ICart> GetCartAsync(string cartId)
         {
             var cart = await _cartBiz.GetCartAsync(cartId);
             return cart;
         }
 
+        [HttpPost]
+        //[Route("{AddCartItemAsync}")]
         public async Task<HttpResponseMessage> AddCartItemAsync(CartItem cartItem)
         {
             try
@@ -45,8 +46,12 @@ namespace Tecsys.Retail.RestApi.Controllers
                 if (!this.ModelState.IsValid)
                     throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, $"$cartItem Failed Validation"));
 
-                await _cartBiz.AddCartItemAsync(cartItem);
-                return new HttpResponseMessage(HttpStatusCode.OK);
+                int result = await _cartBiz.AddOrUpdateCartItemAsync(cartItem);
+                if (result==1)
+                    return new HttpResponseMessage(HttpStatusCode.OK);
+                else
+                    return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
+
             }
             catch (Exception ex)
             {
@@ -75,6 +80,8 @@ namespace Tecsys.Retail.RestApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{GetCartItemAsync}")]
         public async Task<ICartItem> GetCartItemAsync(string itemId)
         {
             try

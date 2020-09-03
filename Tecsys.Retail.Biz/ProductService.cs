@@ -33,7 +33,7 @@ namespace Tecsys.Retail.Biz
 
         public async Task<IProduct> GetProductAsync(int productId)
         {
-            Ef.Product productEntity = await _productRepository.GetProduct(productId);
+            Ef.Product productEntity = await _productRepository.GetProductAsync(productId);
             Domain.IProduct product = _typeMapper.Map<Ef.Product, Domain.IProduct>(productEntity);
             return product;
         }

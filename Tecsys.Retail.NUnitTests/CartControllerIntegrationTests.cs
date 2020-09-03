@@ -13,7 +13,7 @@ using Tecsys.Retail.RestApi.Controllers;
 namespace Tecsys.Retail.NUnitTests
 {
     [TestFixture]
-    public class CartItemControllerTests
+    public class CartControllerIntegrationTests
     {
         private IUnityContainer _container;
         private CartController _cartItemController;
@@ -28,7 +28,7 @@ namespace Tecsys.Retail.NUnitTests
         }
 
         [Test]
-        public async Task AddToCart()
+        public async Task AddCartItemAsync()
         {
             //Arrange
             CartItem cartItem = new CartItem();
@@ -53,7 +53,6 @@ namespace Tecsys.Retail.NUnitTests
             Assert.IsTrue(newCartItem.ItemId == itemId);
             Assert.IsTrue(newCartItem.ProductId == productId);
             Assert.IsTrue(newCartItem.Quantity == quantity);
-            Assert.IsTrue(newCartItem.DateCreated == dateCreated);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Tecsys.Retail.RestApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
         }
     }
 }

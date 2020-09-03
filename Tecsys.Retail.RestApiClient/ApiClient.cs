@@ -10,15 +10,42 @@ namespace Tecsys.Retail.RestApiClient
     public class ApiClient
     {
         //https://localhost:44326/api/product/
-        public ApiClient()
+
+        static bool _isInitialized = false;
+
+        public ApiClient(HttpClient httpClient)
         {
-           BaseUri = Settings.Default.BaseUri;
-           this.Client = new HttpClient { BaseAddress = new Uri(BaseUri) };
-           this.Client.DefaultRequestHeaders.Clear();
-            //Define request data format  
-            this.Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Client = httpClient;
+
+            if (httpClient.BaseAddress==null)
+            {
+                httpClient.BaseAddress = new Uri(Settings.Default.BaseUri);
+                httpClient.DefaultRequestHeaders.Clear();
+                //Define request data format  
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            }
+            
         }
-        public string BaseUri { get; }
+
         public HttpClient Client { get; }
+
+        //private readonly IHttpClientFactory _httpClientFactory;
+
+        //public ApiClient(IHttpClientFactory httpClientFactory)
+        //{
+        //    _httpClientFactory = httpClientFactory;
+        //}
+
+        //public HttpClient Client
+        //{
+        //    get
+        //    {
+        //        var httpClient = _httpClientFactory.CreateClient();
+        //        httpClient.BaseAddress = new Uri(Settings.Default.BaseUri);
+        //        httpClient.DefaultRequestHeaders.Clear();
+        //        httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //        return httpClient;
+        //    }
+        //}
     }
 }

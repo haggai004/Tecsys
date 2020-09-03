@@ -7,19 +7,21 @@ using System.Collections.Generic;
 using System;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Tecsys.Retail.Repository
 {
     public class CartRepository : Repository, ICartRepository
     {
         object _lockerObj = new object();
-        public async Task<bool> AddCartItemAsync(CartItem cartItem)
+        public async Task<int> AddOrUpdateCartItemAsync(CartItem cartItem)
         {
             return await Task.Run(() =>
             {
                 try
                 {
                     //check if exists
+
                     CartItem cartItemEntity = null;
 
                     lock(_lockerObj)
@@ -29,6 +31,7 @@ namespace Tecsys.Retail.Repository
 
                     string sql;
                     object[] sqlParams = null;
+
 
                     if (cartItemEntity == null)
                     {
@@ -54,8 +57,6 @@ namespace Tecsys.Retail.Repository
                            ,@ProductId)";
 
                         cartItemEntity = new CartItem();
-                        //DbContext.CartItems.Add(cartItem);
-
                     }
                     else
                     {
@@ -73,16 +74,16 @@ namespace Tecsys.Retail.Repository
                     //DbContext is not thread safe - Need to handle multi-thread access contention by locking DbContext
                     lock (_lockerObj)
                     {
-                        DbContext.Database.ExecuteSqlCommand(sql, sqlParams);
+                        return DbContext.Database.ExecuteSqlCommand(sql, sqlParams);
                     }
-                    return true;
                 }
                 catch (Exception ex)
                 {
                     //log
+                    return 0;
+
                 }
 
-                return false;
             });
         }
 

@@ -7,6 +7,10 @@ using Unity;
 using Unity.Lifetime;
 using Tecsys.Retail.Repository;
 using Tecsys.Retail.TypeMapping;
+using Unity.Injection;
+using System.Net.Http;
+//using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Tecsys.Retail.IocContainer
 {
@@ -62,10 +66,14 @@ namespace Tecsys.Retail.IocContainer
             container.RegisterType<ITypeMapper, TypeMapper>(new ContainerControlledLifetimeManager());
             container.RegisterType<IProductService, ProductService>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICartService, CartService>(new ContainerControlledLifetimeManager());
-            container.RegisterType<IProductApiClient,ProductApiClient>(new ContainerControlledLifetimeManager());
-            container.RegisterType<ICartApiClient,CartApiClient>(new ContainerControlledLifetimeManager());
+            container.RegisterType<CustomHttpHandler>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IProductApiClient,ProductApiClient>(new InjectionConstructor(new HttpClient()));
+            container.RegisterType<ICartApiClient,CartApiClient>(new InjectionConstructor(new HttpClient(), container.Resolve<ITypeMapper>()));
 
-
+            //var serviceProvider = new ServiceCollection().AddHttpClient().BuildServiceProvider();
+            //var httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
+            //container.RegisterInstance("IHttpClientFactory", httpClientFactory, InstanceLifetime.Singleton);
+            //container.RegisterInstance<IHttpClientFactory>(httpClientFactory, InstanceLifetime.Singleton);
 
         }
     }

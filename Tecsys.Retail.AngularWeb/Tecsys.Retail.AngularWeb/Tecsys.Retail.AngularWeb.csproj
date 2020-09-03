@@ -34,12 +34,14 @@
     <None Remove="ClientApp\src\app\cart\cart.component.ts" />
     <None Remove="ClientApp\src\app\models\cart-item-model.ts" />
     <None Remove="ClientApp\src\app\models\interfaces.ts" />
+    <None Remove="ClientApp\src\app\services\cart.service.spec.ts" />
     <None Remove="ClientApp\src\app\services\data.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\cart-item-model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\interfaces.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\tests\cart.service.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\data.service.ts" />
   </ItemGroup>
 
